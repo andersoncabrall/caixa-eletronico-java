@@ -10,6 +10,8 @@ Projeto de terminal em Java desenvolvido para simular operações bancárias bá
 
 ## 🛠️ Conceitos Práticos Aplicados
 - **Orientação a Objetos (POO):** Encapsulamento com atributos privados (`private double saldo`).
+- **Construtores com Validação:** Garantia de segurança ao instanciar objetos, impedindo a criação de contas com saldo inicial negativo.
 - **Métodos:** Métodos de leitura (`verExtrato`) e manipulação de estado (`inserir` e `retirar`).
 - **Estruturas de Repetição:** Laço de repetição `while(true)` para manter a aplicação rodando.
 - **Controle de Fluxo:** Estrutura `switch/case` para navegação do menu.
+- **Boas Práticas (Clean Code):** Variáveis com nomes descritivos e estruturação de pastas no padrão de mercado (`src/main/java`).
