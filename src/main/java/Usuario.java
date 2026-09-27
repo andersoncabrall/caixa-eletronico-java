@@ -1,6 +1,16 @@
 public class Usuario {
-    private double saldo = 0;
+    private double saldo;
     
+    public Usuario(double saldoInicial){
+        if (saldoInicial < 0){
+            System.out.println("numero do saldo invalido, valor definido como r$ 0.00");
+            saldoInicial = 0;
+
+        }else{
+            saldo = saldoInicial;
+        }
+    }
+
     public double verExtrato() {
         return this.saldo;
     }

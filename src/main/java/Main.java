@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] Args) {
         
-        Usuario user = new Usuario();
+        Usuario user = new Usuario(0);
         Scanner leitor = new Scanner(System.in);
-        int resp = 0;
-        double money = 0;
+        int respostaUser = 0;
+        double valor = 0;
         
         while (true) {
             System.out.println("\n--------------------");
@@ -16,13 +16,13 @@ public class Main {
             System.out.println("4 - Sair");
             System.out.print("Escolha uma opcao: ");
             
-            resp = leitor.nextInt();
+            respostaUser = leitor.nextInt();
             
-            switch (resp) {
+            switch (respostaUser) {
                 case 1:
                     System.out.print("Digite o valor do deposito: R$ ");
-                    money = leitor.nextDouble();
-                    user.inserir(money);
+                    valor = leitor.nextDouble();
+                    user.inserir(valor);
                     break;
                     
                 case 2:
@@ -31,8 +31,8 @@ public class Main {
                     
                 case 3:
                     System.out.print("Digite o valor do saque: R$ ");
-                    money = leitor.nextDouble();
-                    user.retirar(money);
+                    valor = leitor.nextDouble();
+                    user.retirar(valor);
                     break;
                     
                 case 4:
