@@ -1,49 +1,42 @@
-import java.util.Scanner;
+import exception.ContaNaoEncontradaException;
+import exception.SaldoInsuficienteException;
+import model.Banco;
+import model.ContaBancaria;
 
 public class Main {
-    public static void main(String[] Args) {
-        
-        Usuario user = new Usuario(0);
-        Scanner leitor = new Scanner(System.in);
-        int respostaUser = 0;
-        double valor = 0;
-        
-        while (true) {
-            System.out.println("\n--------------------");
-            System.out.println("1 - Deposito");
-            System.out.println("2 - Extrato");
-            System.out.println("3 - Sacar");
-            System.out.println("4 - Sair");
-            System.out.print("Escolha uma opcao: ");
-            
-            respostaUser = leitor.nextInt();
-            
-            switch (respostaUser) {
-                case 1:
-                    System.out.print("Digite o valor do deposito: R$ ");
-                    valor = leitor.nextDouble();
-                    user.inserir(valor);
-                    break;
-                    
-                case 2:
-                    System.out.println("Seu saldo atual e: R$ " + user.verExtrato());
-                    break;
-                    
-                case 3:
-                    System.out.print("Digite o valor do saque: R$ ");
-                    valor = leitor.nextDouble();
-                    user.retirar(valor);
-                    break;
-                    
-                case 4:
-                    System.out.println("Valeu, meu chefe! Ate a proxima.");
-                    System.exit(0);
-                    break;
-                    
-                default:
-                    System.out.println("Opcao invalida! Tenta de novo.");
-                    break;
-            }
+    public static void main(String[] args) {
+        Banco banco = new Banco();
+
+        ContaBancaria c1 = new ContaBancaria(1001);
+        ContaBancaria c2 = new ContaBancaria(1002);
+
+        banco.adicionarConta(c1);
+        banco.adicionarConta(c2);
+
+        try {
+            ContaBancaria contaAchada = banco.buscarConta(1001);
+            contaAchada.depositarValor(1500.00);
+            contaAchada.sacarValor(300.00);
+            contaAchada.imprimirExtrato();
+        } catch (ContaNaoEncontradaException | SaldoInsuficienteException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+        System.out.println();
+
+        try {
+            ContaBancaria contaAchada = banco.buscarConta(1001);
+            contaAchada.sacarValor(5000.00);
+        } catch (ContaNaoEncontradaException | SaldoInsuficienteException e) {
+            System.out.println("Erro esperado capturado: " + e.getMessage());
+        }
+
+        System.out.println();
+
+        try {
+            banco.buscarConta(9999);
+        } catch (ContaNaoEncontradaException e) {
+            System.out.println("Erro esperado capturado: " + e.getMessage());
         }
     }
 }
